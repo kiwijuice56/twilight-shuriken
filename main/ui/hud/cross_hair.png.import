@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cross_hair.png-7432259aa0cf404c073b8e41560c2e5f.stex"
+path="res://.import/cross_hair.png-b440cc24288d2c4f7d963898b109b28b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/hud/cross_hair.png"
-dest_files=[ "res://.import/cross_hair.png-7432259aa0cf404c073b8e41560c2e5f.stex" ]
+source_file="res://main/ui/hud/cross_hair.png"
+dest_files=[ "res://.import/cross_hair.png-b440cc24288d2c4f7d963898b109b28b.stex" ]
 
 [params]
 

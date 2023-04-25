@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://main/ui/hud/shuriken_count/shuriken_count.gd" type="Script" id=1]
+[ext_resource path="res://main/shader/invert_ui.gdshader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 3 )
+
+[node name="ShurikenCount" type="Label"]
+material = SubResource( 6 )
+margin_right = 32.0
+margin_bottom = 28.0
+text = "32"
+align = 2
+valign = 2
+script = ExtResource( 1 )
+fade_time = 0.1
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.8
+one_shot = true
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+unique_name_in_owner = true

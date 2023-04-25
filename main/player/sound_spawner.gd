@@ -24,9 +24,9 @@ func play_sound() -> void:
 	var sound_player = AudioStreamPlayer3D.new() if positional else AudioStreamPlayer.new()
 	
 	if sound_player is AudioStreamPlayer:
-		sound_player.volume_db = volume 
+		sound_player.volume_db = volume + GlobalSettings.sound_effect_volume
 	else:
-		sound_player.unit_db = volume 
+		sound_player.unit_db = volume + GlobalSettings.sound_effect_volume
 	
 	sound_player.stream = sounds[randi() % len(sounds)]
 	

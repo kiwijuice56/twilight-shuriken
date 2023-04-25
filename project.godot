@@ -9,15 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody",
-"class": "Bullet",
-"language": "GDScript",
-"path": "res://main/player/shuriken/shuriken.gd"
-}, {
 "base": "Spatial",
 "class": "Player",
 "language": "GDScript",
 "path": "res://main/player/player.gd"
+}, {
+"base": "KinematicBody",
+"class": "Shuriken",
+"language": "GDScript",
+"path": "res://main/player/shuriken/shuriken.gd"
+}, {
+"base": "Label",
+"class": "ShurikenCount",
+"language": "GDScript",
+"path": "res://main/ui/hud/shuriken_count/shuriken_count.gd"
 }, {
 "base": "Spatial",
 "class": "SoundSpawner",
@@ -25,8 +30,9 @@ _global_script_classes=[ {
 "path": "res://main/player/sound_spawner.gd"
 } ]
 _global_script_class_icons={
-"Bullet": "",
 "Player": "",
+"Shuriken": "",
+"ShurikenCount": "",
 "SoundSpawner": ""
 }
 
@@ -38,7 +44,12 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Settings="*res://main/settings.gd"
+GlobalSettings="*res://main/global_settings.gd"
+GlobalData="*res://main/global_data.gd"
+
+[display]
+
+window/size/fullscreen=true
 
 [gui]
 
@@ -51,6 +62,11 @@ throw={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="player_shuriken"
+3d_physics/layer_2="wall"
 
 [physics]
 

@@ -13,6 +13,16 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01225, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195828, 0 )
+
+[node name="ShurikenSpawnA" type="Position3D" parent="Pivot/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.046, 0 )
+
+[node name="ShurikenSpawnB" type="Position3D" parent="Pivot/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1.046, 0 )
+
+[node name="Target" type="Position3D" parent="Pivot/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24 )
 
 [node name="ThrowSoundSpawner" type="Spatial" parent="."]
 script = ExtResource( 5 )
