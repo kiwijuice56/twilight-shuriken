@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/shuriken_model_b.obj-86a206ead08b454c5e823c463c4c142e.mesh"
+
+[deps]
+
+files=[ "res://.import/shuriken_model_b.obj-86a206ead08b454c5e823c463c4c142e.mesh" ]
+
+source_file="res://main/player/shuriken/shuriken_model_b.obj"
+dest_files=[ "res://.import/shuriken_model_b.obj-86a206ead08b454c5e823c463c4c142e.mesh", "res://.import/shuriken_model_b.obj-86a206ead08b454c5e823c463c4c142e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
