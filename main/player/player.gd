@@ -9,6 +9,7 @@ onready var cam: Camera = $Pivot/Camera
 onready var throw_spawner: SoundSpawner = $ThrowSoundSpawner
 
 func _ready() -> void:
+	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:

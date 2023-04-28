@@ -5,62 +5,29 @@
 [ext_resource path="res://main/shader/invert_ui.gdshader" type="Shader" id=3]
 [ext_resource path="res://main/ui/hud/shuriken_count/ShurikenCount.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/ui/main_theme.tres" type="Theme" id=5]
+[ext_resource path="res://main/level/blank_environment.tres" type="Environment" id=6]
+[ext_resource path="res://main/enemy/Enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://main/level/paint_mesh.gd" type="Script" id=8]
+[ext_resource path="res://main/level/test_cube.obj" type="ArrayMesh" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 
-[sub_resource type="Environment" id=10]
-background_mode = 1
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Viewport")
 
-[sub_resource type="Shader" id=8]
-code = "shader_type spatial;
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_unshaded = true
+albedo_texture = SubResource( 2 )
 
-uniform float threshold = 0.0;
-"
-
-[sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 8 )
-shader_param/threshold = 1.0
-
-[sub_resource type="QuadMesh" id=4]
-
-[sub_resource type="ConcavePolygonShape" id=5]
-data = PoolVector3Array( -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0 )
-
-[sub_resource type="Animation" id=11]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:omni_range")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 8.19 ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "pulse"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:omni_range")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 2.0, 16.0 ]
-}
+[sub_resource type="ConcavePolygonShape" id=4]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.708, 2.53023, 6.74424 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -74,58 +41,49 @@ margin_left = -5.0
 margin_top = -5.0
 margin_right = 5.0
 margin_bottom = 5.0
-rect_pivot_offset = Vector2( 8, 8 )
+rect_pivot_offset = Vector2( 5, 5 )
 theme = ExtResource( 5 )
 texture = ExtResource( 2 )
 
 [node name="ShurikenCount" parent="HUD/CrossHair" instance=ExtResource( 4 )]
-margin_right = 36.0
-margin_bottom = 32.0
+margin_right = 44.0
+margin_bottom = 42.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 10 )
+[node name="Enemy" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 6.31292, -6.40945, -5.10426 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 48, 0, 0, 0, 23.9187, 0.0822516, 0, -1.97404, 0.996612, 0, 0, -29.6189 )
-material_override = SubResource( 9 )
-mesh = SubResource( 4 )
+[node name="Enemy2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.62702, -1.81605, 18.7196 )
 
-[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 2048, 2049 )
+handle_input_locally = false
+disable_3d = true
+usage = 0
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="ColorRect" type="ColorRect" parent="Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -0.000244141
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 1 )
+
+[node name="TestMap" type="MeshInstance" parent="."]
+transform = Transform( 20, 0, 0, 0, -8.74228e-07, 0.5, 0, -20, -2.18557e-08, 6.08715, -8.78306, -4.4878 )
+material_override = SubResource( 3 )
+mesh = ExtResource( 9 )
+script = ExtResource( 8 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="TestMap"]
+environment = ExtResource( 6 )
+
+[node name="StaticBody" type="StaticBody" parent="TestMap"]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
-shape = SubResource( 5 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 48, 0, 0, 0, -1.04907e-06, 1, 0, -24, -4.37114e-08, 0, -10.866, -17.2578 )
-mesh = SubResource( 4 )
-
-[node name="StaticBody" type="StaticBody" parent="MeshInstance2"]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance2/StaticBody"]
-shape = SubResource( 5 )
-
-[node name="MeshInstance3" type="MeshInstance" parent="."]
-transform = Transform( 48, 0, 0, 0, 4.26735, -0.984066, 0, 23.6176, 0.177806, 0, 13.6252, -17.2578 )
-mesh = SubResource( 4 )
-
-[node name="StaticBody" type="StaticBody" parent="MeshInstance3"]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance3/StaticBody"]
-shape = SubResource( 5 )
-
-[node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.24348, -24.372 )
-light_energy = 9001.0
-omni_range = 8.19
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="OmniLight"]
-autoplay = "pulse"
-playback_speed = 0.4
-anims/RESET = SubResource( 11 )
-anims/pulse = SubResource( 12 )
+[node name="CollisionShape" type="CollisionShape" parent="TestMap/StaticBody"]
+transform = Transform( 1, -2.98023e-08, 4.65661e-10, 0, 1, 0, 9.53674e-07, -2.86102e-06, 1, 0, 0, 0 )
+shape = SubResource( 4 )

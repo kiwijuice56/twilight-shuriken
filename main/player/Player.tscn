@@ -22,7 +22,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.046, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1.046, 0 )
 
 [node name="Target" type="Position3D" parent="Pivot/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16 )
 
 [node name="ThrowSoundSpawner" type="Spatial" parent="."]
 script = ExtResource( 5 )
