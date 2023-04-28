@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Area",
 "class": "Blob",
 "language": "GDScript",
-"path": "res://main/enemy/blob.gd"
+"path": "res://main/enemy/blob/blob.gd"
 }, {
 "base": "Area",
 "class": "Enemy",
@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "SoundSpawner",
 "language": "GDScript",
 "path": "res://main/player/sound_spawner.gd"
+}, {
+"base": "Sprite",
+"class": "Splatter",
+"language": "GDScript",
+"path": "res://main/enemy/splatter/splatter.gd"
 } ]
 _global_script_class_icons={
 "Blob": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "Player": "",
 "Shuriken": "",
 "ShurikenCount": "",
-"SoundSpawner": ""
+"SoundSpawner": "",
+"Splatter": ""
 }
 
 [application]

@@ -26,7 +26,6 @@ func throw_shuriken() -> void:
 	GlobalData.shuriken_count -= 1
 	
 	var new_shuriken: Shuriken = shuriken_scene.instance()
-	
 	var spawn: Position3D = get_node("Pivot/Camera/ShurikenSpawn" + ("A" if randf() < 0.5 else "B"))
 	new_shuriken.direction = ($Pivot/Camera/Target.global_transform.origin - spawn.global_transform.origin).normalized()
 	new_shuriken.desired_direction = -$Pivot/Camera.global_transform.basis.z

@@ -1,6 +1,6 @@
 extends Node
 
-var shuriken_count: int = 64 setget set_shuriken_count
+var shuriken_count: int = 99 setget set_shuriken_count
 
 signal shuriken_count_changed(val)
 

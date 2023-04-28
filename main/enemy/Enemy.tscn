@@ -9,6 +9,7 @@ radius = 1.25
 height = 2.0
 
 [sub_resource type="ShaderMaterial" id=2]
+render_priority = 1
 shader = ExtResource( 3 )
 
 [node name="Enemy" type="Area"]
@@ -16,7 +17,7 @@ transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
 collision_layer = 4
 monitorable = false
 script = ExtResource( 1 )
-blob_count = 12
+blob_count = 8
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.1847, 0 )
@@ -27,4 +28,4 @@ mesh = ExtResource( 2 )
 material/0 = SubResource( 2 )
 
 [node name="BlobSpawn" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14863, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23411, 0 )

@@ -1,18 +1,21 @@
+# Adapted from https://github.com/alfredbaudisch/GodotRuntimeTextureSplatMapPainting
 class_name PaintMesh
 extends MeshInstance
 
-var meshtool
-var mesh_instance
+var meshtool: MeshDataTool
+var mesh_instance: MeshInstance
 
-var transform_vertex_to_global = true
+var transform_vertex_to_global := true
 
 var _face_count := 0
 var _world_normals := PoolVector3Array()
 var _world_vertices := []
 var _local_face_vertices := []
 
+var splatter_scene: PackedScene = preload("res://main/enemy/splatter/Splatter.tscn")
+
 func _ready() -> void:
-	# artifact of adapting this code X3
+	# Artifact of copying this script  and putting it in the wrong place X3 
 	mesh_instance = self
 	
 	meshtool = MeshDataTool.new()
@@ -22,9 +25,6 @@ func _ready() -> void:
 	_world_normals.resize(_face_count)
 	
 	_load_mesh_data()
-
-func _resize_pools():
-	pass
 
 func _load_mesh_data():
 	for idx in range(_face_count):
@@ -41,20 +41,37 @@ func _load_mesh_data():
 			mesh_instance.global_transform.xform(meshtool.get_vertex(fv2)),
 			mesh_instance.global_transform.xform(meshtool.get_vertex(fv3)),
 		])
-		
-func get_face(point, normal, epsilon = 0.8):
+
+func get_face(point, normal, epsilon = 0.01):
+	var matches: Array = []
 	for idx in range(_face_count):
 		var world_normal = _world_normals[idx]
 		
-		if !equals_with_epsilon(world_normal, normal, epsilon):
+		if !equals_with_epsilon(world_normal.normalized(), normal, epsilon):
 			continue
 		
 		var vertices = _world_vertices[idx]
 		
 		var bc = is_point_in_triangle(point, vertices[0], vertices[1], vertices[2])
 		if bc:
-			return [idx, vertices, bc]
-			
+			matches.push_back([idx, vertices, bc])
+	
+	# This fix was taken from
+	# https://www.youtube.com/watch?v=4DFpLnEnKFk
+	if matches.size() > 1:
+		var closest_match: Array
+		var smallest_distance: float = 99999.0
+		for m in matches:
+			var plane := Plane(m[1][0], m[1][1], m[1][2])
+			var dist = plane.distance_to(point)
+			if dist < smallest_distance:
+				smallest_distance = dist
+				closest_match = m
+		return closest_match
+	
+	if matches.size() > 0:
+		return matches[0]
+	
 	return null
 
 func get_uv_coords(point, normal, transform = true):
@@ -66,9 +83,8 @@ func get_uv_coords(point, normal, transform = true):
 	
 	if face == null:
 		return null
-		
+	
 	var bc = face[2]
-#
 	var uv1 = meshtool.get_vertex_uv(_local_face_vertices[face[0]][0])
 	var uv2 = meshtool.get_vertex_uv(_local_face_vertices[face[0]][1])
 	var uv3 = meshtool.get_vertex_uv(_local_face_vertices[face[0]][2])
@@ -98,22 +114,22 @@ func cart2bary(p : Vector3, a : Vector3, b : Vector3, c: Vector3) -> Vector3:
 func transfer_point(from : Basis, to : Basis, point : Vector3) -> Vector3:
 	return (to * from.inverse()).xform(point)
 	
-func bary2cart(a : Vector3, b : Vector3, c: Vector3, barycentric: Vector3) -> Vector3:
+func bary2cart(a: Vector3, b: Vector3, c: Vector3, barycentric: Vector3) -> Vector3:
 	return barycentric.x * a + barycentric.y * b + barycentric.z * c
 	
-func is_point_in_triangle(point, v1, v2, v3):
-	var bc = cart2bary(point, v1, v2, v3)
+func is_point_in_triangle(point: Vector3, v1: Vector3, v2: Vector3, v3: Vector3):
+	var bc: Vector3 = cart2bary(point, v1, v2, v3)
 	
 	if (bc.x < 0 or bc.x > 1) or (bc.y < 0 or bc.y > 1) or (bc.z < 0 or bc.z > 1):
 		return null
-		
+	
 	return bc
 
 func paint(pos: Vector3, norm: Vector3) -> void:
 	var uv = get_uv_coords(pos, norm)
-	var sprite: Sprite = Sprite.new()
-	sprite.position = Vector2(uv.x, -uv.y) * 2048 + Vector2(0, 2048)
-	print(sprite.position)
-	sprite.texture = preload("res://splatter.png")
-	sprite.scale *= 0.2 * rand_range(0.4, 1.5)
-	get_tree().get_root().get_node("Main/Viewport/").add_child(sprite)
+	if uv == null:
+		return
+	var sprite: Splatter = splatter_scene.instance()
+	sprite.position = Vector2(uv.x, -uv.y) * 4096 + Vector2(0, 4096)
+	
+	get_parent().get_node("SplatterViewport/").add_child(sprite)

@@ -1,30 +1,18 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/ui/hud/cross_hair.png" type="Texture" id=2]
 [ext_resource path="res://main/shader/invert_ui.gdshader" type="Shader" id=3]
 [ext_resource path="res://main/ui/hud/shuriken_count/ShurikenCount.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/ui/main_theme.tres" type="Theme" id=5]
-[ext_resource path="res://main/level/blank_environment.tres" type="Environment" id=6]
-[ext_resource path="res://main/enemy/Enemy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://main/level/paint_mesh.gd" type="Script" id=8]
-[ext_resource path="res://main/level/test_cube.obj" type="ArrayMesh" id=9]
+[ext_resource path="res://main/level/Level.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 
-[sub_resource type="ViewportTexture" id=2]
-viewport_path = NodePath("Viewport")
-
-[sub_resource type="SpatialMaterial" id=3]
-resource_local_to_scene = true
-flags_unshaded = true
-albedo_texture = SubResource( 2 )
-
-[sub_resource type="ConcavePolygonShape" id=4]
-data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
 [node name="Main" type="Node"]
+
+[node name="Level" parent="." instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.708, 2.53023, 6.74424 )
@@ -48,42 +36,3 @@ texture = ExtResource( 2 )
 [node name="ShurikenCount" parent="HUD/CrossHair" instance=ExtResource( 4 )]
 margin_right = 44.0
 margin_bottom = 42.0
-
-[node name="Enemy" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 6.31292, -6.40945, -5.10426 )
-
-[node name="Enemy2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.62702, -1.81605, 18.7196 )
-
-[node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 2048, 2049 )
-handle_input_locally = false
-disable_3d = true
-usage = 0
-render_target_update_mode = 3
-gui_disable_input = true
-
-[node name="ColorRect" type="ColorRect" parent="Viewport"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -0.000244141
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color( 0, 0, 0, 1 )
-
-[node name="TestMap" type="MeshInstance" parent="."]
-transform = Transform( 20, 0, 0, 0, -8.74228e-07, 0.5, 0, -20, -2.18557e-08, 6.08715, -8.78306, -4.4878 )
-material_override = SubResource( 3 )
-mesh = ExtResource( 9 )
-script = ExtResource( 8 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="TestMap"]
-environment = ExtResource( 6 )
-
-[node name="StaticBody" type="StaticBody" parent="TestMap"]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="TestMap/StaticBody"]
-transform = Transform( 1, -2.98023e-08, 4.65661e-10, 0, 1, 0, 9.53674e-07, -2.86102e-06, 1, 0, 0, 0 )
-shape = SubResource( 4 )

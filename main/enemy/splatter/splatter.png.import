@@ -2,25 +2,25 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/splatter.png-640944c29a4393e0b048b9001bb8ffee.stex"
+path="res://.import/splatter.png-061a7f2a8259f9ec6fc935093a31dbf7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://splatter.png"
-dest_files=[ "res://.import/splatter.png-640944c29a4393e0b048b9001bb8ffee.stex" ]
+source_file="res://main/enemy/splatter/splatter.png"
+dest_files=[ "res://.import/splatter.png-061a7f2a8259f9ec6fc935093a31dbf7.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

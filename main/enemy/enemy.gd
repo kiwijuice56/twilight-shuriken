@@ -3,7 +3,7 @@ extends Area
 
 export var blob_count: int = 24
 
-var blob_scene: PackedScene = preload("res://main/enemy/Blob.tscn")
+var blob_scene: PackedScene = preload("res://main/enemy/blob/Blob.tscn")
 
 func _ready() -> void:
 	connect("area_entered", self, "_on_area_entered")
@@ -18,4 +18,3 @@ func death() -> void:
 		blob.direction = Vector3.UP
 		blob.translation = $BlobSpawn.global_translation
 		get_tree().get_root().add_child(blob)
-		
