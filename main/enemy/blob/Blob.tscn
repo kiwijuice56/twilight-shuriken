@@ -2,6 +2,9 @@
 
 [ext_resource path="res://main/enemy/blob/blob.gd" type="Script" id=1]
 
+[sub_resource type="SphereShape" id=5]
+radius = 0.2
+
 [sub_resource type="SphereMesh" id=3]
 radius = 0.3
 height = 0.6
@@ -9,9 +12,6 @@ height = 0.6
 [sub_resource type="SpatialMaterial" id=4]
 flags_unshaded = true
 albedo_color = Color( 1, 0.176471, 0.462745, 1 )
-
-[sub_resource type="SphereShape" id=5]
-radius = 0.2
 
 [node name="Blob" type="Area"]
 collision_layer = 8
@@ -22,13 +22,13 @@ rand_rotation_limit = 4.0
 rand_speed_limit = 0.3
 speed = 28.0
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
-
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 5 )
 
 [node name="RayCast" type="RayCast" parent="."]
 enabled = true
 collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )

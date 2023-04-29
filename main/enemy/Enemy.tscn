@@ -3,7 +3,7 @@
 [ext_resource path="res://main/enemy/enemy.gd" type="Script" id=1]
 [ext_resource path="res://main/enemy/carrot.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://main/shader/invert_3d.gdshader" type="Shader" id=3]
-[ext_resource path="res://main/player/sound_spawner.gd" type="Script" id=4]
+[ext_resource path="res://main/sound_effects/sound_spawner.gd" type="Script" id=4]
 [ext_resource path="res://main/sound_effects/death.wav" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
@@ -19,7 +19,7 @@ transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
 collision_layer = 4
 monitorable = false
 script = ExtResource( 1 )
-blob_count = 14
+blob_count = 16
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.1847, 0 )

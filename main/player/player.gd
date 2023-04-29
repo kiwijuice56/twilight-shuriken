@@ -7,6 +7,9 @@ const shuriken_scene: PackedScene = preload("res://main/player/shuriken/Shuriken
 
 onready var cam: Camera = $Pivot/Camera
 
+func _ready() -> void:
+	GlobalData.connect("enemies_killed_changed", self, "_on_enemies_killed_changed")
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * GlobalSettings.mouse_sensitivity)
@@ -14,6 +17,9 @@ func _input(event: InputEvent) -> void:
 		cam.rotation.x = clamp(cam.rotation.x, -look_up_limit, look_up_limit)
 	if event.is_action_pressed("throw", false):
 		throw_shuriken()
+
+func _on_enemies_killed_changed(_val: int) -> void:
+	cam.add_trauma(0.13)
 
 func throw_shuriken() -> void:
 	if GlobalData.shuriken_count <= 0:
