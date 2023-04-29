@@ -36,7 +36,7 @@ func randomize_apperance() -> void:
 	rotate_x(randf() * rand_rotation_limit - rand_rotation_limit / 2.0)
 	rotate_y(randf() * rand_rotation_limit - rand_rotation_limit / 2.0)
 	rotate_z(randf() * rand_rotation_limit - rand_rotation_limit / 2.0)
-	mesh.mesh = mesh_variations[randi() % len(mesh_variations)]
+	mesh.mesh = mesh_variations[0] # randi() % len(mesh_variations)]
 
 func stop_flying() -> void:
 	speed = 0

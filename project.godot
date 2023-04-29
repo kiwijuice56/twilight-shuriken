@@ -24,10 +24,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://main/level/level.gd"
 }, {
+"base": "Node",
+"class": "Main",
+"language": "GDScript",
+"path": "res://main/main.gd"
+}, {
 "base": "MeshInstance",
 "class": "PaintMesh",
 "language": "GDScript",
 "path": "res://main/level/paint_mesh.gd"
+}, {
+"base": "Submenu",
+"class": "PauseMenu",
+"language": "GDScript",
+"path": "res://main/ui/submenu/pause/pause_menu.gd"
 }, {
 "base": "Spatial",
 "class": "Player",
@@ -53,17 +63,25 @@ _global_script_classes=[ {
 "class": "Splatter",
 "language": "GDScript",
 "path": "res://main/enemy/splatter/splatter.gd"
+}, {
+"base": "Reference",
+"class": "Submenu",
+"language": "GDScript",
+"path": "res://main/ui/submenu/submenu.gd"
 } ]
 _global_script_class_icons={
 "Blob": "",
 "Enemy": "",
 "Level": "",
+"Main": "",
 "PaintMesh": "",
+"PauseMenu": "",
 "Player": "",
 "Shuriken": "",
 "ShurikenCount": "",
 "SoundSpawner": "",
-"Splatter": ""
+"Splatter": "",
+"Submenu": ""
 }
 
 [application]
@@ -76,6 +94,10 @@ config/icon="res://icon.png"
 
 GlobalSettings="*res://main/global_settings.gd"
 GlobalData="*res://main/global_data.gd"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
@@ -90,6 +112,11 @@ common/drop_mouse_on_gui_input_disabled=true
 throw={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":80,"unicode":0,"echo":false,"script":null)
  ]
 }
 

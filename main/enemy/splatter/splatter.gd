@@ -1,3 +1,7 @@
+# The 2D ink blotches that are painted onto the map when a blob collides
+#
+# Splatters are placed on a 4096x4096 viewport (corresponding to UVs, see PaintMesh)
+# which is then wrapped onto the map mesh using a ViewportTexture
 class_name Splatter
 extends Sprite
 
@@ -7,7 +11,6 @@ export var fade_time: float = 1.0
 
 func _ready() -> void:
 	scale *= 1.0 + rand_range(-rand_size_limit, rand_size_limit)
-	# The fade out doesn't look very good, keeping it to toggle later just in case
 	$BeginTimer.start($BeginTimer.wait_time * 1.0 + rand_range(-rand_delay_limit, rand_delay_limit))
 	yield($BeginTimer, "timeout")
 	$Tween.interpolate_property(self, "scale", null, Vector2(), fade_time)

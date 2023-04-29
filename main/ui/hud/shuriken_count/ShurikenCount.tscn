@@ -17,10 +17,8 @@ script = ExtResource( 1 )
 fade_time = 0.1
 
 [node name="Timer" type="Timer" parent="."]
-unique_name_in_owner = true
 wait_time = 1.8
 one_shot = true
 autostart = true
 
 [node name="Tween" type="Tween" parent="."]
-unique_name_in_owner = true

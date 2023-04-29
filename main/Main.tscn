@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://main/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/ui/hud/cross_hair.png" type="Texture" id=2]
@@ -6,16 +6,24 @@
 [ext_resource path="res://main/ui/hud/shuriken_count/ShurikenCount.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/ui/main_theme.tres" type="Theme" id=5]
 [ext_resource path="res://main/level/Level.tscn" type="PackedScene" id=6]
+[ext_resource path="res://main/shader/invert_tint_ui.gdshader" type="Shader" id=7]
+[ext_resource path="res://main/main.gd" type="Script" id=8]
+[ext_resource path="res://main/ui/submenu/pause/pause_menu.gd" type="Script" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 7 )
+shader_param/cov_color = Color( 1, 0.176471, 0.462745, 1 )
+
 [node name="Main" type="Node"]
+script = ExtResource( 8 )
 
 [node name="Level" parent="." instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.708, 2.53023, 6.74424 )
+transform = Transform( 0.100483, 0, -0.994939, 0, 1, 0, 0.994939, 0, 0.100483, -14.6045, 2.53023, 8.96267 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -36,3 +44,16 @@ texture = ExtResource( 2 )
 [node name="ShurikenCount" parent="HUD/CrossHair" instance=ExtResource( 4 )]
 margin_right = 44.0
 margin_bottom = 42.0
+
+[node name="HitFlash" type="ColorRect" parent="HUD"]
+visible = false
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Menus" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" type="Control" parent="Menus"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 9 )
