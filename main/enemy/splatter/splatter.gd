@@ -11,9 +11,12 @@ export var fade_time: float = 1.0
 
 func _ready() -> void:
 	scale *= 1.0 + rand_range(-rand_size_limit, rand_size_limit)
+	material.set_shader_param("displacement", Vector2(randf(), randf()))
+	material = material.duplicate()
+	
 	$BeginTimer.start($BeginTimer.wait_time * 1.0 + rand_range(-rand_delay_limit, rand_delay_limit))
 	yield($BeginTimer, "timeout")
-	$Tween.interpolate_property(self, "scale", null, Vector2(), fade_time)
+	$Tween.interpolate_property(material, "shader_param/threshold", null, 4.0, fade_time)
 	$Tween.start()
 	yield($Tween, "tween_completed")
 	queue_free()

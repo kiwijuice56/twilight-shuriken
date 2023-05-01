@@ -49,9 +49,15 @@ omni_range = 26.0
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource( 6 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.26177, -0.611496, -2.19164 )
+color = Color( 1, 0, 0.470588, 1 )
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource( 6 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 12.5594, 8.58131, 8.98209 )
+color = Color( 0, 0.905882, 1, 1 )
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource( 6 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 18.8379, -0.852273, 12.9767 )
+color = Color( 1, 0.937255, 0, 1 )
 
 [node name="Background" type="MeshInstance" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )

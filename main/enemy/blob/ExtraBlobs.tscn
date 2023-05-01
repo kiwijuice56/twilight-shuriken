@@ -2,7 +2,7 @@
 
 [sub_resource type="SpatialMaterial" id=3]
 flags_unshaded = true
-albedo_color = Color( 1, 0.176471, 0.462745, 1 )
+albedo_color = Color( 0, 0.54902, 0.992157, 1 )
 
 [sub_resource type="CapsuleMesh" id=4]
 material = SubResource( 3 )

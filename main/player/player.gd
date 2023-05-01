@@ -19,7 +19,7 @@ func _input(event: InputEvent) -> void:
 		throw_shuriken()
 
 func _on_enemies_killed_changed(_val: int) -> void:
-	cam.add_trauma(0.13)
+	cam.add_trauma(0.115)
 
 func throw_shuriken() -> void:
 	if GlobalData.shuriken_count <= 0:

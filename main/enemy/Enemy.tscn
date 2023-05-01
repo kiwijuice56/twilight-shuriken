@@ -7,8 +7,8 @@
 [ext_resource path="res://main/sound_effects/death.wav" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 1.25
-height = 2.0
+radius = 1.044
+height = 1.698
 
 [sub_resource type="ShaderMaterial" id=2]
 render_priority = 1
@@ -19,7 +19,7 @@ transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
 collision_layer = 4
 monitorable = false
 script = ExtResource( 1 )
-blob_count = 16
+blob_count = 19
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.1847, 0 )

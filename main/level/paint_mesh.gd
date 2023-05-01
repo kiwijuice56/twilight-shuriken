@@ -42,7 +42,7 @@ func _load_mesh_data() -> void:
 			global_transform.xform(meshtool.get_vertex(fv3)),
 		])
 
-func get_face(point: Vector3, normal: Vector3, epsilon: float = 0.01) -> Array:
+func get_face(point: Vector3, normal: Vector3, epsilon: float = 0.1) -> Array:
 	var matches: Array = []
 	for idx in range(_face_count):
 		var world_normal = _world_normals[idx]
@@ -53,7 +53,7 @@ func get_face(point: Vector3, normal: Vector3, epsilon: float = 0.01) -> Array:
 		var vertices = _world_vertices[idx]
 		
 		var bc: Vector3 = is_point_in_triangle(point, vertices[0], vertices[1], vertices[2])
-		if bc.z > 0:
+		if bc.z >= 0:
 			matches.push_back([idx, vertices, bc])
 	
 	# This fix was taken from
@@ -63,7 +63,7 @@ func get_face(point: Vector3, normal: Vector3, epsilon: float = 0.01) -> Array:
 		var smallest_distance: float = 99999.0
 		for m in matches:
 			var plane: Plane = Plane(m[1][0], m[1][1], m[1][2])
-			var dist: float = plane.distance_to(point)
+			var dist: float = abs(plane.distance_to(point))
 			if dist < smallest_distance:
 				smallest_distance = dist
 				closest_match = m
@@ -120,11 +120,12 @@ func is_point_in_triangle(point: Vector3, v1: Vector3, v2: Vector3, v3: Vector3)
 	
 	return bc
 
-func paint(position: Vector3, normal: Vector3) -> void:
+func paint(position: Vector3, normal: Vector3, color: Color) -> void:
 	var uv = get_uv_coords(position, normal)
 	if uv.x < 0:
 		return
 	var sprite: Splatter = splatter_scene.instance()
 	sprite.position = Vector2(uv.x, -uv.y) * splatter_viewport.size + Vector2(0, splatter_viewport.size.y)
+	sprite.modulate = color
 	
 	splatter_viewport.add_child(sprite)
