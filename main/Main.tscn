@@ -25,6 +25,8 @@ transform = Transform( 0.100483, 0, -0.994939, 0, 1, 0, 0.994939, 0, 0.100483, -
 
 [node name="HUD" type="CanvasLayer" parent="UI"]
 
+[node name="HitFlash" parent="UI/HUD" instance=ExtResource( 7 )]
+
 [node name="CrossHair" type="TextureRect" parent="UI/HUD"]
 material = SubResource( 1 )
 anchor_left = 0.5
@@ -42,8 +44,6 @@ texture = ExtResource( 2 )
 [node name="ShurikenCount" parent="UI/HUD/CrossHair" instance=ExtResource( 4 )]
 margin_right = 44.0
 margin_bottom = 42.0
-
-[node name="HitFlash" parent="UI/HUD" instance=ExtResource( 7 )]
 
 [node name="Menus" type="CanvasLayer" parent="UI"]
 

@@ -21,7 +21,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/threshold = 1.4
+shader_param/threshold = 1.6
 shader_param/scale = 0.365
 shader_param/displacement = Vector2( 1.7, 1.2232 )
 shader_param/noise = ExtResource( 3 )
@@ -45,11 +45,11 @@ tracks/0/keys = {
 
 [node name="Splatter" type="Sprite"]
 material = SubResource( 2 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 rand_delay_limit = 3.0
-rand_size_limit = 0.9
+rand_size_limit = 0.6
 fade_time = 3.5
 
 [node name="BeginTimer" type="Timer" parent="."]
